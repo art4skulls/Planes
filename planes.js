@@ -1,4 +1,4 @@
-// planes.js  7-12-2022  v0.2
+// planes.js  7-12-2022  v0.3
 // Just a little experiment in colour blending
 // by @dr_lee_nft (art4skulls)
 // Licence: CC-BY-SA
@@ -28,7 +28,8 @@ function pallets() {
             ],
         "ratio": [0, 0.15, 0.35, 0.6, 0.75, 0.8, 0.9,0.91,0.92],
         "effect": "grid",
-        "accent" : color(225,201,126)
+        "accent" : color(225,201,126),
+        "rotate" : false
     };
     structures.push(struct);
 
@@ -48,7 +49,8 @@ function pallets() {
             ],
         "ratio": [0, 0.18, 0.34, 0.46, 0.55, 0.6, 0.75, 0.82, 0.9],
         "effect": "blizzard",
-        "accent": color(168, 218, 220)
+        "accent": color(168, 218, 220),
+        "rotate" : true
     };
     structures.push(struct);
 
@@ -66,7 +68,8 @@ function pallets() {
             ],
         "ratio": [0, 0.25, 0.45, 0.6, 0.74, 0.83, 0.95],
         "effect": "reflect",
-        "accent": color(200,200,200)
+        "accent": color(200,200,200),
+        "rotate" : true
     };
     structures.push(struct);
 
@@ -86,7 +89,8 @@ function pallets() {
             ],
         "ratio": [0, 0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9],
         "effect": "monobloc",
-        "accent": color(155,0,0)
+        "accent": color(155,0,0),
+        "rotate" : true
     };
     structures.push(struct);
 
@@ -106,7 +110,8 @@ function pallets() {
             ],
         "ratio": [0,0.45,0.5,0.52,0.6,0.65,0.7,0.8,0.85],
         "effect": "pix",
-        "accent": color(228,92,34)
+        "accent": color(228,92,34),
+        "rotate" : true
     };
     structures.push(struct);
 }
@@ -133,7 +138,7 @@ function setup() {
     C.parent("canvas");
     setCanvas(C);
 
-    setAppName("Planes~"+structures[selection].name);
+    setAppName("Planes~"+structures[selection].name+"_"+selection+"-"+seed);
 
 
 }
@@ -182,7 +187,7 @@ function draw() {
         stroke(colx);
         noFill();
         for (let ii=0; ii < random(5); ii++) {
-            rotate(random(-PI/100));
+            if (structures[selection].rotate) {rotate(random(-PI/100)); }
             ellipse(random(width),height-i,width,random(45));
         }
 
